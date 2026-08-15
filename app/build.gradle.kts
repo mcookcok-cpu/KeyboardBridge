@@ -47,7 +47,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.protobuf:protobuf-java:3.25.5")
-    implementation("org.bouncycastle:bcprov-jdk18on:1.70")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.79")
     implementation("org.slf4j:slf4j-api:1.7.36")
 }
 
