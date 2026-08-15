@@ -19,11 +19,6 @@ val syncRemoteLib = tasks.register<Exec>("syncRemoteLib") {
         val src = out.resolve("src/main/java")
         val target = project.file("src/main/java")
         src.copyRecursively(target, overwrite = true)
-        // The upstream demo context writes its keystore relative to the JVM working directory.
-        // The app replaces that context at runtime with a private Android files directory.
-        project.file("src/main/java/com/kunal52/AndroidRemoteTv.java").delete()
-        project.file("src/main/java/com/kunal52/Main.java").delete()
-        project.file("src/main/java/com/kunal52/AndroidTvListener.java").delete()
     }
 }
 
