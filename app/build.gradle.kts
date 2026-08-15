@@ -19,6 +19,12 @@ val syncRemoteLib = tasks.register<Exec>("syncRemoteLib") {
         val src = out.resolve("src/main/java")
         val target = project.file("src/main/java")
         src.copyRecursively(target, overwrite = true)
+        project.file("src/override").copyRecursively(target, overwrite = true)
+        // The upstream demo context writes its keystore relative to the JVM working directory.
+        // The app replaces that context at runtime with a private Android files directory.
+        project.file("src/main/java/com/kunal52/AndroidRemoteTv.java").delete()
+        project.file("src/main/java/com/kunal52/Main.java").delete()
+        project.file("src/main/java/com/kunal52/AndroidTvListener.java").delete()
     }
 }
 
@@ -31,15 +37,8 @@ android {
         applicationId = "com.julianto.keyboardbridge"
         minSdk = 28
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
+        versionCode = 3
+        versionName = "0.3.0"
     }
 }
 
@@ -48,7 +47,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.protobuf:protobuf-java:3.25.5")
-    implementation("org.bouncycastle:bcprov-jdk18on:1.79")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.70")
     implementation("org.slf4j:slf4j-api:1.7.36")
 }
 
